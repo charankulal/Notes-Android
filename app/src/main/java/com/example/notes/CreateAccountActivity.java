@@ -60,17 +60,19 @@ public class CreateAccountActivity extends AppCompatActivity {
         firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(CreateAccountActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                changeInProgress(false);
                 if (task.isSuccessful())
                 {
+
                     //Account is successfully created
-                    Toast.makeText(CreateAccountActivity.this, "Account created successfully,Check email to verify", Toast.LENGTH_SHORT).show();
+                   Utility.showToast(CreateAccountActivity.this, "Account created successfully,Check email to verify");
                     firebaseAuth.getCurrentUser().sendEmailVerification();
                     firebaseAuth.signOut();
                     finish();
                 }
                 else {
                     //In case of failure
-                    Toast.makeText(CreateAccountActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    Utility.showToast(CreateAccountActivity.this,task.getException().getLocalizedMessage());
                 }
             }
         });
