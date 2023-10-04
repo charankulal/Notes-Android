@@ -13,34 +13,34 @@
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/img_2"
+        android:src="@drawable/img_3"
         android:layout_marginVertical="64dp"
-             />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/signup_image_icon"
-    android:id="@+id/signup_text"
-    android:orientation="vertical">
-    <TextView
+        />
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hii,"
-        android:textStyle="bold"
-        android:textSize="32sp"
+        android:layout_below="@+id/signup_image_icon"
+        android:id="@+id/signup_text"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hii,"
+            android:textStyle="bold"
+            android:textSize="32sp"
 
-        />
+            />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Let's get started"
-        android:textStyle="bold"
-        android:textSize="34sp"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Let's get started"
+            android:textStyle="bold"
+            android:textSize="34sp"
 
-        />
+            />
 
-</LinearLayout>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
