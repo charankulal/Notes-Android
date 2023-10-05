@@ -8,6 +8,12 @@
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".SplashScreenActivity">
+
+    <ImageView
+        android:layout_width="133dp"
+        android:layout_height="128dp"
+        android:layout_marginBottom="20dp"
+        android:src="@mipmap/Logo" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
