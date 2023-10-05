@@ -3,7 +3,10 @@ package com.example.notes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -17,13 +20,14 @@ public class NoteDetailsActivity extends AppCompatActivity {
 
     EditText titleEditText,contentEditText;
     ImageButton saveNoteBtn;
-    TextView pageTitle;
+    TextView pageTitle,deleteNoteTextView;
 
     String title,content,docId;
 
     boolean isEditMode=false;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +37,7 @@ public class NoteDetailsActivity extends AppCompatActivity {
         contentEditText=findViewById(R.id.notes_content_edit_text);
         saveNoteBtn=findViewById(R.id.save_note_btn);
         pageTitle=findViewById(R.id.page_title);
+        deleteNoteTextView=findViewById(R.id.delete_note_text_view_btn);
 
         // Receiving data via intent
 
@@ -43,6 +48,7 @@ public class NoteDetailsActivity extends AppCompatActivity {
         if (docId!=null&& !docId.isEmpty())
         {
             isEditMode=true;
+
         }
 
         titleEditText.setText(title);
@@ -51,10 +57,36 @@ public class NoteDetailsActivity extends AppCompatActivity {
         if(isEditMode)
         {
             pageTitle.setText("Edit your Note");
+            deleteNoteTextView.setVisibility(View.VISIBLE);
         }
 
 
         saveNoteBtn.setOnClickListener((v) -> saveNote() );
+
+        deleteNoteTextView.setOnClickListener((v)->deleteNotefromFirebase());
+    }
+
+    private void deleteNotefromFirebase() {
+        DocumentReference documentReference;
+            documentReference = Utility.getCollectionReferenceForNotes().document(docId);
+
+        documentReference.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful())
+                {
+                    //Note is added to firebase
+                    Utility.showToast(NoteDetailsActivity.this,"Note deleted successfully");
+                }
+                else {
+                    //If adding is failed
+                    Utility.showToast(NoteDetailsActivity.this,"Failed while deleting the Note");
+                }
+                startActivity(new Intent(NoteDetailsActivity.this,MainActivity.class));
+            }
+
+        });
+
     }
 
     private void saveNote() {
@@ -98,7 +130,9 @@ public class NoteDetailsActivity extends AppCompatActivity {
                     //If adding is failed
                     Utility.showToast(NoteDetailsActivity.this,"Failed while adding Note");
                 }
+                startActivity(new Intent(NoteDetailsActivity.this,MainActivity.class));
             }
+
         });
     }
 }
