@@ -83,6 +83,7 @@ public class NoteDetailsActivity extends AppCompatActivity {
                     Utility.showToast(NoteDetailsActivity.this,"Failed while deleting the Note");
                 }
                 startActivity(new Intent(NoteDetailsActivity.this,MainActivity.class));
+                finish();
             }
 
         });
@@ -135,4 +136,5 @@ public class NoteDetailsActivity extends AppCompatActivity {
 
         });
     }
+
 }

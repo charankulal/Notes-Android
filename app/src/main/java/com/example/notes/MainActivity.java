@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 
@@ -22,12 +21,11 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ImageButton menuButton;
     NoteAdapter noteAdapter;
-    @SuppressLint("MissingInflatedId")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         addNoteBtn=findViewById(R.id.add_note_button);
         recyclerView=findViewById(R.id.recycler_view);
         menuButton=findViewById(R.id.menu_btn);
@@ -52,18 +50,15 @@ public class MainActivity extends AppCompatActivity {
         popupMenu.getMenu().add("Logout");
         popupMenu.show();
 
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if(item.getTitle()=="Logout")
-                {
-                    FirebaseAuth.getInstance().signOut();
-                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                    finish();
-                    return true;
-                }
-                return false;
+        popupMenu.setOnMenuItemClickListener(item -> {
+            if(item.getTitle()=="Logout")
+            {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                finish();
+                return true;
             }
+            return false;
         });
 
     }
@@ -80,9 +75,14 @@ public class MainActivity extends AppCompatActivity {
         noteAdapter.stopListening();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onResume() {
         super.onResume();
         noteAdapter.notifyDataSetChanged();
+    }
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 }

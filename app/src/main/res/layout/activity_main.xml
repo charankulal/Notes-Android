@@ -40,13 +40,15 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_note_button"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:backgroundTint="@color/white"
+        android:layout_width="108dp"
+        android:layout_height="108dp"
+
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:src="@drawable/baseline_add_24"
-        android:padding="16dp"
+        android:layout_margin="16dp"
+        android:outlineSpotShadowColor="@color/black"
+        android:outlineAmbientShadowColor="@color/black"
         android:layout_marginBottom="10dp"
         android:layout_marginRight="10dp"
         android:importantForAccessibility="no" />
