@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -19,8 +20,9 @@ import com.google.firebase.firestore.DocumentReference;
 public class NoteDetailsActivity extends AppCompatActivity {
 
     EditText titleEditText,contentEditText;
-    ImageButton saveNoteBtn;
-    TextView pageTitle,deleteNoteTextView;
+    ImageButton saveNoteBtn,deleteNoteBtn;
+    TextView pageTitle;
+    Button deleteNoteTextView;
 
     String title,content,docId;
 
@@ -38,6 +40,7 @@ public class NoteDetailsActivity extends AppCompatActivity {
         saveNoteBtn=findViewById(R.id.save_note_btn);
         pageTitle=findViewById(R.id.page_title);
         deleteNoteTextView=findViewById(R.id.delete_note_text_view_btn);
+        deleteNoteBtn=findViewById(R.id.delete_note_btn);
 
         // Receiving data via intent
 
@@ -64,6 +67,7 @@ public class NoteDetailsActivity extends AppCompatActivity {
         saveNoteBtn.setOnClickListener((v) -> saveNote() );
 
         deleteNoteTextView.setOnClickListener((v)->deleteNotefromFirebase());
+        deleteNoteBtn.setOnClickListener((v)->deleteNotefromFirebase());
     }
 
     private void deleteNotefromFirebase() {

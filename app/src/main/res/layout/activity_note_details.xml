@@ -24,6 +24,16 @@
             android:layout_height="48dp"
             android:id="@+id/save_note_btn"
             android:src="@drawable/baseline_done_24"
+            android:layout_toLeftOf="@+id/delete_note_btn"
+            android:layout_centerVertical="true"
+            app:tint="@color/white"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:importantForAccessibility="no" />
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:id="@+id/delete_note_btn"
+            android:src="@drawable/baseline_delete_24"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             app:tint="@color/white"
@@ -70,14 +80,16 @@
 
 
     </LinearLayout>
-    <TextView
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:id="@+id/delete_note_text_view_btn"
         android:text="Delete Note"
+
+        android:backgroundTint="#000000"
         android:layout_alignParentBottom="true"
         android:gravity="center"
-        android:textColor="#FF0000"
+        android:textColor="@color/white"
         android:visibility="gone"
         android:textSize="20sp"/>
 </RelativeLayout>
